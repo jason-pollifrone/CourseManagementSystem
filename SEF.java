@@ -15,9 +15,8 @@ public class SEF {
 	         System.out.println();
 	         System.out.println("A   -   Add Course");
 	         System.out.println("B   -   View Course");
-	         System.out.println("C   -   Display searched course");
-	         System.out.println("D   -   Display relevant classes");
-	         System.out.println("E   -   Display results");
+	         System.out.println("C   -   Search course list");
+	         System.out.println("D   -   Display results");
 	         System.out.println("X   -   Exit");
 	         System.out.println();
 	         System.out.print("Enter your selection: ");
@@ -82,7 +81,7 @@ public class SEF {
 		}
 		if(cosCount == 0)
 		{
-			System.out.println("There is no Course that was included");
+			System.out.println("There are no courses in the system");
 		}
 	}
 	public static void searchCourse()
@@ -95,10 +94,18 @@ public class SEF {
 			{
 				cos[i].printDetails();
 			}
+			else{
+			System.out.println("No courses matched your query");}
 		}
 	}
 	public static void displayResults()
 	{
+		System.out.println("Enter Student ID: ");
+		String searchID = sc.nextLine();
+		for(int i = 0; i < stuCount; i++)
+		{
+				if(searchID.equals(stu[i].getID())))
+		}
 
 	}
 }
