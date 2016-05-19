@@ -25,6 +25,10 @@ public class student {
 	{
 		return course;
 	}
+	public int getCredit()
+	{
+		return credit;
+	}
 	public void printDetails()
 	{
 	System.out.println("Student ID: "+ID);

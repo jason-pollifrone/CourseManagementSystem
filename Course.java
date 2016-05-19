@@ -1,27 +1,25 @@
 
 public class Course {
-	private String ID;
+	private String courseID;
 	private String name;
 	private String subject;
 	private String preReq;
-	private String lecturer;
 
 	//constructor
-	public Course(String coID, String coName, String coSubject, String coPreReq,String coLecturer)
+	public Course(String coID, String coName, String coSubject, String coPreReq)
 	{
-		this.ID = coID;
+		this.courseID = coID;
 		this.name = coName;
 		this.subject = coSubject;
 		this.preReq = coPreReq;
-		this.lecturer = coLecturer;
 	}
-	public String getName()
+	public String getCourseName()
 	{
 		return name;
 	}
-	public String getID()
+	public String getCourseID()
 	{
-		return ID;
+		return courseID;
 	}
 	public String getSubject()
 	{
@@ -31,17 +29,12 @@ public class Course {
 	{
 		return preReq;
 	}
-	public String getLecturer()
-	{
-		return lecturer;
-	}
 	public void printDetails()
 	{
-	System.out.println("Course ID: "+ID);
+	System.out.println("Course ID: "+courseID);
 	System.out.println("Course name: "+name);
 	System.out.println("Course Subject: " +subject);
 	System.out.println("Course pre-requisite: "+preReq);
-	System.out.print("Course Lecturer: "+lecturer);
 	System.out.println("************************************************");
 	}
 }
