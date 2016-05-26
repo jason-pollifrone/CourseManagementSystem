@@ -1,8 +1,8 @@
 
-public class lecCourse extends Course
+public class lecCourse extends course
 {
 	private String lecturer;
-	public lecCourse(String coID, String coName, String coSubject, String coPreReq, String lecturer)
+	public lecCourse(String coID, String coName, String coSubject, int coPreReq, String lecturer)
 	{
 		super(coID, coName, coSubject, coPreReq);
 		this.lecturer = lecturer;

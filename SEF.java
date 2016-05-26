@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
 public class SEF {
-	private static final Course[] cos = new Course[100];
-	private static final students[] stus = new students[100];
-	private static final student[] stu = new student[100];
-	private static int cosCount = 0;
-	private static int stusCount = 0;
-	private static int stuCount = 0;
+	public static final course[] cos = new course[100];
+	public static final student[] stu = new student[100];
+	public static final lecturer[] lec = new lecturer[100];
+	public static int cosCount = 0;
+	public static int stuCount = 0;
+	public static int lecCount = 0;
 	private static final Scanner sc = new Scanner(System.in);
 	public static void main(String[] args)
-	{
+	{		
 		String user;
 		String password;
 		System.out.println("enter username: ");
@@ -28,7 +28,8 @@ public class SEF {
 	         System.out.println();
 	         System.out.println("A   -   Create Course");
 	         System.out.println("B   -   Assign Lecturer");
-	         System.out.println("D   -   View results");
+	         System.out.println("C   -   View results");
+	         System.out.println("D   -   View Courses");
 	         System.out.println("X   -   Exit");
 	         System.out.println();
 	         System.out.print("Enter your selection: ");
@@ -52,6 +53,9 @@ public class SEF {
 	        		 break;
 	        	 case'C':
 	        		 viewResults();
+	        		 break;
+	        	 case'D':
+	        		 viewCourse();
 	        		 break;
 	        	 case 'X':
 	        		 System.out.println("Goodbye!");
@@ -77,7 +81,7 @@ public class SEF {
 		         System.out.println();
 		         System.out.println("A   -   Enrol Course");
 		         System.out.println("B   -   View Results");
-		         System.out.println("D   -   View Class");
+		         System.out.println("C   -   View Class");
 		         System.out.println("X   -   Exit");
 		         System.out.println();
 		         System.out.print("Enter your selection: ");
@@ -97,10 +101,10 @@ public class SEF {
 		        		 enroll();
 		        		 break;
 		        	 case'B':
-		        		 assignLecturer();
+		        		 viewStuResults();
 		        		 break;
 		        	 case'C':
-		        		 viewResults();
+		        		 viewStuCourses();
 		        		 break;
 		        	 case 'X':
 		        		 System.out.println("Goodbye!");
@@ -125,7 +129,7 @@ public class SEF {
 		         System.out.println("*** Welcome Lecturer ***");
 		         System.out.println();
 		         System.out.println("A   -   Upload results");
-		         System.out.println("D   -   View results");
+		         System.out.println("B   -   View results");
 		         System.out.println("X   -   Exit");
 		         System.out.println();
 		         System.out.print("Enter your selection: ");
@@ -144,7 +148,7 @@ public class SEF {
 		        	 case'A':
 		        		 uploadResult();
 		        		 break;
-		        	 case'C':
+		        	 case'B':
 		        		 viewResults();
 		        		 break;
 		        	 case 'X':
@@ -169,7 +173,7 @@ public class SEF {
 		      {
 		         System.out.println("*** Welcome Program Coordinator ***");
 		         System.out.println();
-		         System.out.println("A   -   Add Course");
+		         System.out.println("A   -   Create Course");
 		         System.out.println("B   -   Grant Permission");
 		         System.out.println("D   -   Grant Special Exemption");
 		         System.out.println("X   -   Exit");
@@ -188,7 +192,7 @@ public class SEF {
 		        	 switch(selection)
 		        	 {
 		        	 case'A':
-		        		 addCourse();
+		        		 createCourse();
 		        		 break;
 		        	 case'B':
 		        		 grantPermission();
@@ -224,10 +228,10 @@ public class SEF {
 		System.out.println("Enter Course Subject");
 		String subject = sc.nextLine();
 		System.out.println("Enter Course Requirements");
-		String preReq = sc.nextLine();
+		int preReq = sc.nextInt();
 
 
-		cos[cosCount] = new Course(courseID, name, subject, preReq);
+		cos[cosCount] = new course(courseID, name, subject, preReq);
 		cosCount++;
 
 	}
@@ -237,6 +241,7 @@ public class SEF {
 		for(int i = 0; i< cosCount; i++)
 		{
 			cos[i].printDetails();
+			System.out.println(cos[i].getCourseName());
 		}
 		if(cosCount == 0)
 		{
@@ -245,21 +250,21 @@ public class SEF {
 	}
 	public static void assignLecturer()
 	{
-		lecCourse list = null;
+		course list = null;
 		System.out.printf("please enter course ID: ");
-		String courseID = sc.nextLine();
+		String ID = sc.nextLine();
 		for (int i = 0; i <cosCount; i++)
 		{
-			if(courseID.equals(cos[i].getCourseID()))
+			if (cos[i].getCourseID().equals(ID))
 			{
-				list = (lecCourse)cos[i];
+				list = (course)cos[i];
 			}
 		}
 		if (list == null)
 		{
 			System.out.println("input was invalid");
 		}
-		else if (list instanceof lecCourse != true)
+		else if (list instanceof course != true)
 		{
 			System.out.println("course does not record lecturer");
 		}
@@ -274,7 +279,7 @@ public class SEF {
 			}
 		}
 	}
-	public static void viewResults()
+	public static void viewStuResults()
 	{
 		System.out.println("Enter Student ID: ");
 		String courseID = sc.nextLine();
@@ -292,21 +297,63 @@ public class SEF {
 	}
 	public static void enroll()
 	{
-		
+		System.out.println("Enter your student ID: ");
+		String id = sc.nextLine();
+		for(int i = 0; i < stuCount; i++)
+		{
+			if(id.equals(stu[i].getID()))
+			{
+				System.out.println("Enter course ID: ");
+				String cID = sc.nextLine();
+				for(int c = 0; c < cosCount; c++)
+				{
+					if(cID.equals(cos[c].getCourseID()))
+					{
+						cID.equals(stu[i].getCourse());
+					}
+				}
+			}
+		}
 	}
-	public static void viewResult()
+	public static void viewStuResult()
 	{
-		
+		System.out.println("Enter student ID: ");
+		String id = sc.nextLine();
+		for(int i = 0; i < stuCount; i++)
+		{
+			if(id.equals(stu[i].getID()))
+			{
+				System.out.println(stu[i].getResult());
+			}
+		}
+	}
+	public static void viewResults()
+	{
+	 	  for(int i = 0; i < stuCount; i++)
+	 	  {
+			  stu[i].printDetails();
+	 	  }		
+	}
+	public static void viewStuCourses()
+	{
+		System.out.println("Enter student ID: ");
+		String id = sc.nextLine();
+		for(int i = 0; i < stuCount; i++)
+		{
+			if(id.equals(stu[i].getID()))
+			{
+				System.out.println(stu[i].getCourse());
+			}
+		}
 	}
 	public static void viewClasses()
 	{
-		
+		for(int i = 0; i <cosCount; i++)
+		{
+			System.out.println(cos[i].getCourseName());
+		}
 	}
 	public static void uploadResult()
-	{
-		
-	}
-	public static void addCourse()
 	{
 		
 	}

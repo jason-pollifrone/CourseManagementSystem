@@ -3,9 +3,9 @@ public class specialStudent extends student
 {
 	private String extraCourse;
 	
-	public specialStudent(String stuID, String stuName, String stuCourse, String exCourse, int stuCredit)
+	public specialStudent(String stuID, String stuName, String stuCourse, String exCourse, int stuCredit, int stuResult)
 	{
-	super(stuID, stuName, stuCourse,stuCredit);
+	super(stuID, stuName, stuCourse,stuCredit, stuResult);
 	
 	this.extraCourse = exCourse;
 	}
