@@ -1,15 +1,16 @@
 
 public class lecturer extends SEF
 {
-	private String name;
-	private String ID;
-	private String course = null;
+	public String name;
+	public String ID;
+	public course course;
+
 	
-	public lecturer(String lecID, String lecName, String lecCourse)
+	public lecturer(String lecID, String lecName)
 	{
 		this.ID = lecID;
 		this.name = lecName;
-		this.course = lecCourse;
+		this.course = null;
 	}
 	public String getID()
 	{
@@ -19,16 +20,13 @@ public class lecturer extends SEF
 	{
 		return name;
 	}
-	public String getCourse()
+	public course getCourse()
 	{
 		return course;
 	}
+	public void setCourse(course lecCourse)
 	{
-	lec[lecCount] = new lecturer("l1", "mr1", null); 
-	lecCount++;
-	lec[lecCount] = new lecturer("l2", "mr2", null); 
-	lecCount++;
-	lec[lecCount] = new lecturer("l3", "mr3", null); 
-	lecCount++;
+		this.course = lecCourse;
 	}
+
 }

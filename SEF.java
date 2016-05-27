@@ -1,24 +1,47 @@
 import java.util.Scanner;
 
 public class SEF {
-	public static final course[] cos = new course[100];
-	public static final student[] stu = new student[100];
-	public static final lecturer[] lec = new lecturer[100];
+	// array and scanner
+	public static course[] cos = new course[100];
+	public static student[] stu = new student[4];
+	public static lecturer[] lec = new lecturer[100];
 	public static int cosCount = 0;
 	public static int stuCount = 0;
 	public static int lecCount = 0;
 	private static final Scanner sc = new Scanner(System.in);
 	public static void main(String[] args)
-	{		
+	{	
+		//array starts here for all objects
+		cos[cosCount] = new course("5555","IT","sef",0);
+		cosCount++;
+		cos[cosCount] = new course("9876", "busniess","accounting", 6);
+		cosCount++;
+		stu[stuCount] = new student("12345","Jason", 5);
+		stuCount++;
+		stu[stuCount] = new student("12346", "Jordan",  3);
+		stuCount++;
+		stu[stuCount] = new student("12347", "Steven",  4);
+		stuCount++;
+		stu[stuCount] = new student("12348", "Shaun", 5);
+		stuCount++;
+		lec[lecCount] = new lecturer("l1", "mr1"); 
+		lecCount++;
+		lec[lecCount] = new lecturer("l2", "mr2"); 
+		lecCount++;
+		lec[lecCount] = new lecturer("l3", "mr3"); 
+		lecCount++;
+		//ends
+		//user input username and password to authenticate
 		String user;
 		String password;
 		System.out.println("enter username: ");
 		user = sc.nextLine();
 		System.out.println("enter password: ");
 		password = sc.nextLine();
+		//authentication is displayed here where the correct input are required to access menu
 		if (user.equals("admin") && (password.equals("password")))
 		{
-			
+			//specific username will be designated to the specified menu option
 		String response;
 	      char selection = '\0';
 
@@ -68,7 +91,7 @@ public class SEF {
 	         }
 	         System.out.println();
 	      }
-	      while (selection != 'X');
+	      while (selection == response.charAt(0));
 	}
 		else if(user.equals("student") &&(password.equals("password")))
 		{
@@ -202,7 +225,7 @@ public class SEF {
 		        		 break;
 		        	 case 'X':
 		        		 System.out.println("Goodbye!");
-		        		 break;
+		        		 return;
 
 		        	 default:
 		        		 System.out.println("Error - you did not enter a valid menu option!");
@@ -215,12 +238,14 @@ public class SEF {
 		}
 	else
 	{
+		//in incorrect input is displayed, a error message will appear
 		System.out.print("wrong username and password!");
 	}
 		
 	}
 	private static void createCourse()
 	{
+		//admin creates the course and input the specified details
 		System.out.println("Enter Course ID");
 		String courseID = sc.nextLine();
 		System.out.println("Enter Course Name");
@@ -229,13 +254,12 @@ public class SEF {
 		String subject = sc.nextLine();
 		System.out.println("Enter Course Requirements");
 		int preReq = sc.nextInt();
-
-
+// Course will be then added into the array 
 		cos[cosCount] = new course(courseID, name, subject, preReq);
 		cosCount++;
 
 	}
-
+//function to display courses in the array
 	public static void viewCourse()
 	{
 		for(int i = 0; i< cosCount; i++)
@@ -248,37 +272,40 @@ public class SEF {
 			System.out.println("There are no courses in the system");
 		}
 	}
+	// function to assign lecturer to a course
 	public static void assignLecturer()
 	{
-		course list = null;
-		System.out.printf("please enter course ID: ");
-		String ID = sc.nextLine();
-		for (int i = 0; i <cosCount; i++)
+		lecturer temp1 = null;
+		System.out.println("lecturer ID: ");
+		String id = sc.nextLine();
+		
+		for(int i = 0; i < lecCount; i++)
 		{
-			if (cos[i].getCourseID().equals(ID))
+			if(lec[i].getID().equals(id))
 			{
-				list = (course)cos[i];
+				temp1 = lec[i];
 			}
 		}
-		if (list == null)
+		course temp2 = null;
+		System.out.println("enter course ID: ");
+		String id1 = sc.nextLine();
+		for(int c = 0; c < cosCount; c++)
 		{
-			System.out.println("input was invalid");
+			if(cos[c].getCourseID().equals(id1))
+			{
+				temp2 = cos[c];
+			}
 		}
-		else if (list instanceof course != true)
+		if (temp1 == null)
 		{
-			System.out.println("course does not record lecturer");
+			System.out.println("error1");
 		}
 		else
 		{
-			System.out.printf("enter lecturer's name: ");
-			String lecturer = sc.nextLine();
-			
-			if(((lecCourse)list).confirmLec(lecturer))
-			{
-				
-			}
+	temp1.setCourse(temp2);
 		}
 	}
+	//function to allow the student to view their own results
 	public static void viewStuResults()
 	{
 		System.out.println("Enter Student ID: ");
@@ -295,24 +322,40 @@ public class SEF {
 			}
 		}
 	}
-	public static void enroll()
+	// lecturer can upload results for students to display
+	public static void uploadResult()
 	{
-		System.out.println("Enter your student ID: ");
+		student temp1 = null;
+		System.out.println("Enter Student Id: ");
 		String id = sc.nextLine();
-		for(int i = 0; i < stuCount; i++)
+		for(int i = 0; i <stuCount; i++)
 		{
-			if(id.equals(stu[i].getID()))
+			if(stu[i].getID().equals(id))
 			{
-				System.out.println("Enter course ID: ");
-				String cID = sc.nextLine();
-				for(int c = 0; c < cosCount; c++)
-				{
-					if(cID.equals(cos[c].getCourseID()))
-					{
-						cID.equals(stu[i].getCourse());
-					}
-				}
+				temp1 = stu[i];
 			}
+		}
+		int temp2 = 0;
+		System.out.println("Enter result: ");
+		int id1 = sc.nextInt();
+		for(int c = 0; c < stuCount; c++)
+		{
+			if(stu[c].getResult() == 0)
+			{
+				temp2 = id1;
+			}
+			else
+			{
+				System.out.println("incorrect course ID!");
+			}
+		}
+		if (temp1 == null)
+				{
+			System.out.println("error1");
+				}
+		else
+		{
+			temp1.setResult(temp2);
 		}
 	}
 	public static void viewStuResult()
@@ -342,7 +385,7 @@ public class SEF {
 		{
 			if(id.equals(stu[i].getID()))
 			{
-				System.out.println(stu[i].getCourse());
+				System.out.println(stu[i].course);
 			}
 		}
 	}
@@ -353,29 +396,102 @@ public class SEF {
 			System.out.println(cos[i].getCourseName());
 		}
 	}
-	public static void uploadResult()
+	public static void enroll()
 	{
-		
+		student temp1 = null;
+		System.out.println("Enter Student Id: ");
+		String id = sc.nextLine();
+		for(int i = 0; i <stuCount; i++)
+		{
+			if(stu[i].getID().equals(id))
+			{
+				temp1 = stu[i];
+			}
+		}
+		course temp2 = null;
+		System.out.println("Enter course ID: ");
+		String id1 = sc.nextLine();
+		for(int c = 0; c < cosCount; c++)
+		{
+			if(cos[c].getCourseID().equals(id1))
+			{
+				temp2 = cos[c];
+			}
+			else
+			{
+				System.out.println("incorrect course ID!");
+			}
+		}
+		if (temp1.getCredit() < temp2.getPreReq())
+		{
+			System.out.println("not enough credit to enroll");
+		}
+		else
+		{
+			temp1.setCourse(temp2);
+		}
 	}
 	public static void grantPermission()
 	{
-		specialStudent list = null;
-		String extraCourse = null;
-		System.out.println("enter Student ID: ");
-		String ID = sc.nextLine();
-		for(int i = 0; i < stuCount; i++)
+		student temp1 = null;
+		System.out.println("Enter Student Id: ");
+		String id = sc.nextLine();
+		for(int i = 0; i <stuCount; i++)
 		{
-			if(ID.equals(stu[i].getID()))
+			if(stu[i].getID().equals(id))
 			{
-				list = (specialStudent)stu[i];
+				temp1 = stu[i];
 			}
-			 	if(((specialStudent)list).confirmXtra(extraCourse))
-			 	{
-			 		System.out.println("exemption has been granted!");
-			 	}
-		}		
+		}
+		course temp2 = null;
+		System.out.println("Enter course ID: ");
+		String id1 = sc.nextLine();
+		for(int c = 0; c < cosCount; c++)
+		{
+			if(cos[c].getCourseID().equals(id1))
+			{
+				temp2 = cos[c];
+			}
+			else
+			{
+				System.out.println("incorrect course ID!");
+			}
+		}
+		if (temp1.getCredit() < temp2.getPreReq())
+			{
+				System.out.println("Not enough credit to enroll");
+			}
+		else
+		{
+			temp1.setExCourse(temp2);
+		}
 	}
 	public static void grantSExempt()
 	{
- 	}
+		student temp1 = null;
+		System.out.println("Enter Student Id: ");
+		String id = sc.nextLine();
+		for(int i = 0; i <stuCount; i++)
+		{
+			if(stu[i].getID().equals(id))
+			{
+				temp1 = stu[i];
+			}
+		}
+		course temp2 = null;
+		System.out.println("Enter course ID: ");
+		String id1 = sc.nextLine();
+		for(int c = 0; c < cosCount; c++)
+		{
+			if(cos[c].getCourseID().equals(id1))
+			{
+				temp2 = cos[c];
+			}
+			else
+			{
+				System.out.println("incorrect course ID!");
+			}
+		}
+			temp1.setExCourse(temp2);
+	}
 }

@@ -1,30 +1,24 @@
 
-public class student extends SEF{
+public class student extends SEF
+	{
 	public String ID;
 	public String name;
-	public String course;
+	public course course;
 	public int credit;
-	public int results;
+	public int result;
+	public course exCourse;
 
 	//constructor
-	public student(String stuID, String stuName, String stuCourse, int stuCredit, int stuResults)
+	public student(String stuID, String stuName, int stuCredit)
 	{
 		this.ID = stuID;
 		this.name = stuName;
-		this.course = stuCourse;
+		this.course = null;
 		this.credit = stuCredit;
-		this.results = stuResults;
+		this.result = 0;
+		this.exCourse = null;
 	}
-	{
-		stu[stuCount] = new student("12345","Jason", "321", 5,50);
-		stuCount++;
-		stu[stuCount] = new student("12346", "Jordan", "321", 3,50);
-		stuCount++;
-		stu[stuCount] = new student("12347", "Steven", "321", 4,70);
-		stuCount++;
-		stu[stuCount] = new student("12348", "Shaun", "321", 5,70);
-		stuCount++;
-	}
+
 	
 	
 	public String getName()
@@ -35,7 +29,7 @@ public class student extends SEF{
 	{
 		return ID;
 	}
-	public String getCourse()
+	public course getCourse()
 	{
 		return course;
 	}
@@ -45,14 +39,30 @@ public class student extends SEF{
 	}
 	public int getResult()
 	{
-		return results;
+		return result;
+	}
+	public course getExCourse()
+	{
+		return exCourse;
+	}
+	public void setCourse(course stuCourse)
+	{
+		this.course = stuCourse;
+	}
+	public void setExCourse(course stuExCourse)
+	{
+		this.exCourse = stuExCourse;
+	}
+	public void setResult(int stuResult)
+	{
+		this.result = stuResult;
 	}
 	public void printDetails()
 	{
 	System.out.println("Student ID: "+ID);
 	System.out.println("Student name: "+name);
 	System.out.println("Student course: "+ course);
-	System.out.println("class result: " +results);
+	System.out.println("class result: " +result);
 	System.out.println("************************************************");
 	}
 }

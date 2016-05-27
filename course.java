@@ -1,4 +1,5 @@
-public class course extends SEF {
+public class course
+{
 	private String courseID;
 	private String name;
 	private String subject;
@@ -36,5 +37,9 @@ public class course extends SEF {
 	System.out.println("Course Subject: " +subject);
 	System.out.println("Course pre-requisite: "+preReq);
 	System.out.println("************************************************");
+	}
+	public boolean confirmLec(String lecturer) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
