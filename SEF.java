@@ -82,7 +82,7 @@ public class SEF {
 	        		 break;
 	        	 case 'X':
 	        		 System.out.println("Goodbye!");
-	        		 break;
+	        		 return;
 
 	        	 default:
 	        		 System.out.println("Error - you did not enter a valid menu option!");
@@ -91,7 +91,7 @@ public class SEF {
 	         }
 	         System.out.println();
 	      }
-	      while (selection == response.charAt(0));
+	      while (selection != 'X');
 	}
 		else if(user.equals("student") &&(password.equals("password")))
 		{
