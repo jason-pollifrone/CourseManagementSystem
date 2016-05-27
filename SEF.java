@@ -32,12 +32,15 @@ public class SEF {
 		lecCount++;
 		//ends
 		//user input username and password to authenticate
-		String user;
-		String password;
-		System.out.println("enter username: ");
-		user = sc.nextLine();
-		System.out.println("enter password: ");
-		password = sc.nextLine();
+		System.out.println("welcome");
+		for(int p = 1; p > 0 ; p++)
+		{
+			String user;
+			System.out.println("enter username: ");
+			user = sc.nextLine();
+			System.out.println("enter password: ");
+			String password;
+			password = sc.nextLine();
 		//authentication is displayed here where the correct input are required to access menu
 		if (user.equals("admin") && (password.equals("password")))
 		{
@@ -61,7 +64,7 @@ public class SEF {
 	         System.out.println();
 	         if (response.length() != 1)
 	         {
-	        	 System.out.println("Error: Invalid Input - Selection must be a single character");
+	        	 System.out.println("");
 	         }
 	         else
 	         {
@@ -82,7 +85,7 @@ public class SEF {
 	        		 break;
 	        	 case 'X':
 	        		 System.out.println("Goodbye!");
-	        		 return;
+	        		 break;
 
 	        	 default:
 	        		 System.out.println("Error - you did not enter a valid menu option!");
@@ -113,7 +116,7 @@ public class SEF {
 		         System.out.println();
 		         if (response.length() != 1)
 		         {
-		        	 System.out.println("Error: Invalid Input - Selection must be a single character");
+		        	 System.out.println("");
 		         }
 		         else
 		         {
@@ -134,7 +137,7 @@ public class SEF {
 		        		 break;
 
 		        	 default:
-		        		 System.out.println("Error - you did not enter a valid menu option!");
+		        		 System.out.println("");
 
 		        	 }
 		         }
@@ -161,7 +164,7 @@ public class SEF {
 		         System.out.println();
 		         if (response.length() != 1)
 		         {
-		        	 System.out.println("Error: Invalid Input - Selection must be a single character");
+		        	 System.out.println("");
 		         }
 		         else
 		         {
@@ -179,7 +182,7 @@ public class SEF {
 		        		 break;
 
 		        	 default:
-		        		 System.out.println("Error - you did not enter a valid menu option!");
+		        		 System.out.println("");
 
 		        	 }
 		         }
@@ -207,7 +210,7 @@ public class SEF {
 		         System.out.println();
 		         if (response.length() != 1)
 		         {
-		        	 System.out.println("Error: Invalid Input - Selection must be a single character");
+		        	 System.out.println("");
 		         }
 		         else
 		         {
@@ -225,7 +228,7 @@ public class SEF {
 		        		 break;
 		        	 case 'X':
 		        		 System.out.println("Goodbye!");
-		        		 return;
+		        		 break; 
 
 		        	 default:
 		        		 System.out.println("Error - you did not enter a valid menu option!");
@@ -242,6 +245,7 @@ public class SEF {
 		System.out.print("wrong username and password!");
 	}
 		
+	}
 	}
 	private static void createCourse()
 	{
